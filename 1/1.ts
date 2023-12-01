@@ -3,25 +3,25 @@ const r = fs.readFileSync("./1/input.txt", "utf8");
 const input = r.split("\n");
 
 // part 1
-// let sum = 0;
-// for (let i = 0; i < input.length; i++) {
-//     let j = 0;
-//     let k = input[i].length - 1;
-//     while (j < k) {
-//         if (isNaN(input[i][j])) {
-//             j++;
-//         }
-//         if (isNaN(input[i][k])) {
-//             k--;
-//         }
-//         if (!isNaN(input[i][j]) && !isNaN(input[i][k])) {
-//             break;
-//         }
-//     }
-//     sum += parseInt(input[i][j] + input[i][k]);
-// }
+let sum = 0;
+for (let i = 0; i < input.length; i++) {
+    let j = 0;
+    let k = input[i].length - 1;
+    while (j < k) {
+        if (isNaN(input[i][j])) {
+            j++;
+        }
+        if (isNaN(input[i][k])) {
+            k--;
+        }
+        if (!isNaN(input[i][j]) && !isNaN(input[i][k])) {
+            break;
+        }
+    }
+    sum += parseInt(input[i][j] + input[i][k]);
+}
 
-// console.log(sum);
+console.log(sum);
 
 //part 2
 
@@ -42,11 +42,14 @@ function findSubstring(string: string, backward: boolean = false) {
         if (string.includes(nums[i])) {
             if (
                 (string.indexOf(nums[i]) === 0 && !backward) ||
-                (string.indexOf(nums[i]) === string.length - nums[i].length &&
+                (string.lastIndexOf(nums[i]) ===
+                    string.length - nums[i].length &&
                     backward)
             ) {
                 places.push({
-                    index: string.indexOf(nums[i]),
+                    index: backward
+                        ? string.lastIndexOf(nums[i])
+                        : string.indexOf(nums[i]),
                     number: i + 1,
                 });
             }
@@ -87,6 +90,8 @@ for (let i = 0; i < input.length; i++) {
             }
         }
     }
+    j = 0;
+    k = input[i].length - 1;
     while (j < k) {
         if (!isNaN(input[i][k])) {
             y = parseInt(input[i][k]);
