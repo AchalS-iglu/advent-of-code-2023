@@ -3,6 +3,13 @@
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
-    "@types/node": "^20.10.1"
+    "@types/node": "^20.10.1",
+    "bun-types": "latest"
+  },
+  "name": "advent-of-code-2023",
+  "module": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
